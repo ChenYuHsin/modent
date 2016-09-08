@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>MoDənt</title>
+  <!-- 必要之import檔案 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/queries.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+  <!-- import END-->
+    <link rel="stylesheet" href="stylesheets/screen.css">
+    <script src="https://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <script src="js/jquery.min.js"></script>   
+    <script src="js/key.js"></script>
+  </head>
+      <body id="top">
+      <script>
+        window.fbAsyncInit = function() {
+            Parse.FacebookUtils.init({ // this line replaces FB.init({
+              appId      : '633858636720666', // Facebook App ID
+              status     : true,  // check Facebook Login status
+              cookie     : true,  // enable cookies to allow Parse to access the session
+              xfbml      : true,  // initialize Facebook social plugins on the page
+              version    : 'v2.2' // point to the latest Facebook Graph API version
+            });
+          };
+             
+          (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));       
+      </script>
+
+        <header id="home">
+          <!--animated BG-->
+          <div class="container demo-1" style="
+          width: 100%;
+          padding: 0px; ">
+            <div class="content">
+              <div id="large-header" class="large-header">
+                <canvas id="demo-canvas"></canvas>
+                <h1 class="main-title">
+                  MoDənt
+                  <div class="thin">Make moment into dent</div>
+                </h1>
+              </div>
+            </div>
+          </div>
+          <script src="animated-BG/js/TweenLite.min.js"></script>
+          <script src="animated-BG/js/EasePack.min.js"></script>
+          <script src="animated-BG/js/rAF.js"></script>
+          <script src="animated-BG/js/demo-1.js"></script>
+          <!--animated  -->
+        </header>
+        
+        <section class="intro text-center section-padding" id="intro">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2 wp1">
+                <h1 class="arrow">New ways about sharing your days</h1>
+                <p>
+                  Link every interesting points in one day to turn it into lines. Then, everybody's line could knit out a tight connection  
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="features text-center section-padding" id="features">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="arrow">Do what you do, and you'll be linked with others</h1>
+                <div class="features-wrapper">
+                  <div class="col-md-4 wp2">
+                    <div class="icon">
+                      <i class="fa fa-laptop shadow"></i>
+                    </div>
+                    <h2>Make a Dent!</h2>
+                    <p>
+                      write down your daily works.
+                    </p>
+                  </div>
+                  <div class="col-md-4 wp2 delay-05s">
+                    <div class="icon">
+                      <i class="fa fa-eye shadow"></i>
+                    </div>
+                    <h2>Find the coincidence</h2>
+                    <p>
+                      You can turn coincidence into chances.
+                    </p>
+                  </div>
+                  <div class="col-md-4 wp2 delay-1s">
+                    <div class="icon">
+                      <i class="fa fa-heart shadow"></i>
+                    </div>
+                    <h2>Friends Connection</h2>
+                    <p>Know more about your friends.</p>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="swag text-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <h1>make a dent!<span>Make a <em>friend!</em></span></h1>
+                <a href="#portfolio" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="portfolio text-center section-padding" id="portfolio">
+          <div class="container">
+            <div class="row">
+              <div id="portfolioSlider">
+                <ul class="slides">
+                  <li>
+                    <div class="col-md-4 wp4">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src="img/keyboard.jpg" alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>1. Record what you do </h2>
+                      <p>Just write down what you've done or what  you'll do Like using to-do-list.</p>
+                    </div>
+                    <div class="col-md-4 wp4 delay-05s">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src="img/clothes-hanger.jpg" alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>2. Link dots, make a dent</h2>
+                      <p>Try to record a frame of time. Because we could not finish every stuff just in a moment</p>
+                    </div>
+                    <div class="col-md-4 wp4 delay-1s">
+                      <div class="overlay-effect effects clearfix">
+                        <div class="img">
+                          <img src="img/cameras.jpg" alt="Portfolio Item">
+                          <div class="overlay">
+                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>3. Compare with others</h2>
+                      <p>Lots of people do lots of things in oneday. There might be some beautiful coincidence</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="ignite-cta text-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <a class="ignite-btn login_btn">Make a dent NOW</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class="team text-center section-padding" id="team">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="arrow">We're a team trying to do the best</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="team-wrapper">
+
+                      <div class="col-md-3 wp5">
+                        <img src="img/1.png" alt="Team Member">
+                        <h2>Chen Yu-Hsin</h2>
+                        <p>Senior, MIS, NCCU</p>
+                        <p>Developer</p>
+                      </div>
+                      
+                      <div class="col-md-3 wp5 delay-05s">
+                        <img src="img/3.png" alt="Team Member">
+                        <h2>chiu chui hui</h2>
+                        <p>Senior, MIS, NCCU</p>
+                        <p>Developer</p>
+                      </div>
+                      <div class="col-md-3 wp5 delay-1s">
+                        <img src="img/4.png" alt="Team Member">
+                        <h2>LIN TING-HONG</h2>
+                        <p>Senior, MIS, NCCU</p>
+                        <p>Developer</p>
+                      </div>
+
+                      <div class="col-md-3 wp5 delay-105s">
+                        <img src="img/2.png" alt="Team Member">
+                        <h2>CHENG CHIAO-I</h2>
+                        <p>Senior, MIS, NCCU</p>
+                        <p>Developer</p>
+                      </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="subscribe text-center">
+          <div class="container">
+            <h1><i class="fa fa-paper-plane"></i><span>Give us some advice</span></h1>
+            <form action="#">
+              <input type="text" name="" value="" placeholder="" required>
+              <input type="submit" name="" value="Send">
+            </form>
+          </div>
+        </section>
+        <section class="dark-bg text-center section-padding contact-wrap" id="contact">
+          <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="arrow">Contact us</h1>
+              </div>
+            </div>
+            <div class="row contact-details">
+              <div class="col-md-4">
+                <div class="light-box box-hover">
+                  <h2><i class="fa fa-map-marker"></i><span>Address</span></h2>
+                  <p>No.64,Sec.2,Zhi-Nan Rd., Wenshan,Taipei 116</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="light-box box-hover">
+                  <h2><i class="fa fa-mobile"></i><span>Phone</span></h2>
+                  <p id="phone-num">+886 919xxxxxx</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="light-box box-hover">
+                  <h2><i class="fa fa-paper-plane"></i><span>Email</span></h2>
+                  <p id="email"><a href="#">100306xxx@nccu.edu.tw</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <ul class="legals">
+<!--                   <li><a href="#"></a></li>
+                  <li><a href="#"></a></li> -->
+                </ul>
+              </div>
+              <div class="col-md-6 credit">
+                <p>Designed &amp; Developed by <a href="chococheng.github.io/sna">MoDənt</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/waypoints.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="js/jquery.flexslider.js"></script>
+        <script src="js/modernizr.js"></script>
+      </body>
+    </html>

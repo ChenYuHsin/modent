@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Friends</title>
+
+
+
+    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+    <link href="css/semantic.min.css" rel="stylesheet" type="text/css">
+    <link href="css/custom.css" rel="stylesheet" type="text/css">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="stylesheets/friends.css" rel="stylesheet" type="text/css">
+   
+    <link href="css/v2.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="https://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/semantic.min.js"></script>
+    <script src="js/style.js"></script>
+    <script src="js/key.js"></script>
+    <script src="js/friend.js"></script>
+    <script src="js/v2.js"></script>
+
+
+</head>
+
+<body>
+    <script>
+            window.fbAsyncInit = function() {
+                Parse.FacebookUtils.init({ // this line replaces FB.init({
+                  appId      : '633858636720666', // Facebook App ID
+                  status     : true,  // check Facebook Login status
+                  cookie     : true,  // enable cookies to allow Parse to access the session
+                  xfbml      : true,  // initialize Facebook social plugins on the page
+                  version    : 'v2.2' // point to the latest Facebook Graph API version
+                });
+             
+                // Run code after the Facebook SDK is loaded.
+                $('.login_btn').css("display","none");
+                    FB.api('/me/picture?width=500', function(response) {
+                        var my_picture_url = response.data.url;
+                        Parse.User.current().set('imagesrc', my_picture_url);
+                        Parse.User.current().save();
+                        $("#account_img").attr('src', my_picture_url);
+                        $("#profilephoto").attr('src', my_picture_url);
+                    });
+                    FB.api('/me', function(response) {
+                        var my_name = response.name;
+                        Parse.User.current().set('name', my_name);
+                        Parse.User.current().save();
+                        $(".account_info").html("Hi! "+ my_name);
+                        $("#your-name").html(my_name);
+                    });
+                var recommendfriend = function(id, url, name){
+                    var friendbody = $('<div class="card" id="'+id+'"><div class="dimmable image"><img  id="friendimage" src="'+url+'"></div><div class="content"><a class="header">'+name+'</a></div><div class="ui bottom blue attached button" id="add_friend_btn"><i class="add icon"></i>Add Friend</div></div>');
+                    $('#recommendfriend').append(friendbody);
+                }
+                var friendlist = function(id, url, name){
+                    var listbody = $('<div class="card" id="'+id+'"><div class="image"><img id="friendimage" src="'+url+'"></div><div class="content"><a class="header">'+name+'</a></div></div>');
+                    $('#friendlists').append(listbody);
+                }
+                var logined = function(){
+                    //Recommend friends section
+                    var user = Parse.Object.extend('User');
+                            var query = new Parse.Query(user);
+                            query.find({
+                                success:function(alluser){
+                                    for(var i = 0; i<alluser.length; i++){
+                                        if(alluser[i].id != Parse.User.current().id){
+                                            var userid = alluser[i].id;
+                                            var username = alluser[i].get('name');
+                                            var userphotourl = alluser[i].get('imagesrc');
+                                            recommendfriend(userid, userphotourl, username);   
+                                            var friends = Parse.User.current().get('friends');
+                                            for(var j = 0; j<friends.length; j++){
+                                                var friend = friends[j];
+                                                var judge = $("div[id='"+friend+"']");
+                                                if(judge!=null){
+                                                    $('[id="'+friend+'"]').remove();
+                                                }
+                                            }   
+                                        }
+                                    }
+                                }
+                            })
+                            //Friend list section
+                            var userfriend = Parse.User.current().get('friends');
+                            if(userfriend.length != 0){
+                                for(var i = 0; i<userfriend.length; i++){
+                                    var queryfriend = Parse.Object.extend('User');
+                                    var query = new Parse.Query(queryfriend);
+                                    query.equalTo('objectId', userfriend[i]);
+                                    query.first({
+                                        success:function(frienddata){
+                                            var friendid = frienddata.id;
+                                            var friendphotourl = frienddata.get('imagesrc');
+                                            var friendname = frienddata.get('name');
+                                            friendlist(friendid, friendphotourl, friendname);
+                                        }
+                                    })
+                                }
+                            }
+                }
+                if(Parse.User.current()!=null){
+                        logined();
+                }
+              };
+             
+              (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+           <div class="following bar">
+        <!--mavigation-->
+        <div class="ui  main menu ">
+            <div class="ui page grid">
+                <div class="column">
+                    <div class="container">
+                    <div id="left" class="left menu inverted ">
+                      <a  class="item logo">
+                        Modent
+                      </a>
+                          <a class="item" id="profile">
+                            <i class="users icon"></i> Friends
+                          </a>
+                     </div>     
+                        <!--friends page-->
+                        
+                        
+                        <div id="right" class="right menu inverted ">
+                            <a class="item" id="userphoto">
+                                <img id="account_img"/>
+                            </a>
+                            <a class=" item account_info" id="accountinfo">
+
+                            </a>
+                            <a class="item login_btn">
+                                Login
+                            </a> 
+                            <a class="item logout_btn">
+                                Logout
+                            </a>   
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <header id="header_v2">
+            <div class="slogan" style="line-height: 100px">
+                Add a friend, follow more dents!
+            </div>
+    </header>
+
+    <div class="profile-con">
+    <!-- friends -->
+        <div class="ui page grid">
+            <h2 class="ui header">
+                <div class="content">
+                    My Friends
+                    <div class="sub header">
+                        Here are friends you have followed.
+                    </div>
+                </div>
+            </h2>
+
+            <section id="friend-followed" class="sixteen wide column"> 
+                <div class="ui six cards" id="friendlists">
+
+                </div>
+
+                <!-- <div class="friend-blocks">
+                    <figure>
+                        <img src="img/4.jpg"/>
+                        <figcaption>
+                            <span>高大為</span>
+                            <p class="icon-links">
+                                <a href="#"><i class="fa fa-comments-o"></i></a>
+                                <a href="#"><i class="fa fa-heart-o"></i></a>
+                            </p>
+                        </figcaption>           
+                    </figure>
+                </div> -->
+            </section>
+
+            <h2 class="ui header">
+                <div class="content">
+                    Recommended Friends
+                    <div class="sub header">
+                        Here is someone you might be interestes in.
+                    </div>
+                </div>
+            </h2>
+
+            <section id="might-interested" class="sixteen wide column">
+                <div class="ui six special cards" id="recommendfriend">
+
+                </div>   
+                <!-- <div class="friend-blocks">
+                    <figure>
+                        <img src="img/4.jpg"/>
+                        <figcaption>
+                            <span>高大為</span>
+                            <p class="icon-links">
+                                <a href="#"><i class="fa fa-comments-o"></i></a>
+                                <a href="#"><i class="fa fa-heart-o"></i></a>
+                            </p>
+                        </figcaption>           
+                    </figure>
+                </div> -->
+            </section>
+            
+        </div>
+    </div>
+
+<div class="ui small test modal transition" style="margin-top: -98px;" id="add_friends_modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Add Friend
+    </div>
+    <div class="content">
+      <p>Are you sure ? </p>
+    </div>
+    <div class="actions">
+      <div class="ui negative button">
+        No
+      </div>
+      <div class="ui ok positive right labeled icon button">
+        Yes
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+</div>
+</body>
+<html>
+
